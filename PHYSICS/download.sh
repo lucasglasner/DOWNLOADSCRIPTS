@@ -17,17 +17,28 @@ printf '\n\n}\n'
 if [ -f "${idate}.nc" ]; then
     echo "Forecast for today already exists!"
     echo "Checking forecast file integrity..."
+    #statement=$(ncdump -h ${idate}.nc | head | grep -oP '(?<=time =).*?(?=;)')
     statement=$(ncdump -h ${idate}.nc | head | grep -oP '(?<=time =).*?(?=;)')
     if [ $statement = 240 ]; then
         echo 'All good'
     else
         echo 'Forecast file isnt complete, downloading again...'
         motuclient --config-file forecast.ini
+        echo 'Changing FillValue to -9999 and compressing with nco'
+        ncatted -a _FillValue,,m,f,-9999 ${idate}.nc
+        ncpdq -L 5 -4 ${idate}.nc tmp.nc
+        rm ${idate}.nc
+        mv tmp.nc ${idate}.nc
     fi
 else
     echo "Forecast data for today doesnt exists"
     echo "Downloading forecast..."
     motuclient --config-file forecast.ini
+    echo 'Changing FillValue to -9999 and compressing with nco'
+    ncatted -a _FillValue,,m,f,-9999 ${idate}.nc
+    ncpdq -L 5 -4 ${idate}.nc tmp.nc
+    rm ${idate}.nc
+    mv tmp.nc ${idate}.nc
 fi
 printf '\n'
 if [ -f "HINDCAST/${ydate}.nc" ]; then
@@ -36,6 +47,11 @@ else
 	echo "Hindcast data for today doesnt exists!"
 	echo "Downloading hindcast..."
 	motuclient --config-file hindcast.ini
+    echo 'Changing FillValue to -9999 and compressing with nco'
+    ncatted -a _FillValue,,m,f,-9999 HINDCAST/${ydate}.nc
+    ncpdq -L 5 -4 HINDCAST/${ydate}.nc HINDCAST/tmp.nc
+    rm HINDCAST/${ydate}.nc
+    mv HINDCAST/tmp.nc HINDCAST/${ydate}.nc
 fi
 
 rm hindcast.ini
@@ -43,8 +59,8 @@ rm forecast.ini
 printf "Done\n"
 printf "\n\n"
 echo "---------------------------------------------------------------------------------------------"
-echo "Checking data for the last 10 days..."
-for i in {1..10}; do
+echo "Checking data for the last 3 days..."
+for i in {1..3}; do
     printf '\n'
     echo "---------------------------------------------------------------------------------------------"
     printf "\nChecking forecast for $i days ago...\n"
@@ -68,11 +84,21 @@ for i in {1..10}; do
         else
             echo 'Forecast file isnt complete, downloading again...'
             motuclient --config-file forecast.ini
+            echo 'Changing FillValue to -9999 and compressing with nco'
+            ncatted -a _FillValue,,m,f,-9999 ${idate}.nc
+            ncpdq -L 5 -4 ${idate}.nc tmp.nc
+            rm ${idate}.nc
+            mv tmp.nc ${idate}.nc
         fi
     else
         echo "Forecast data for $i days ago doesnt exists"
         echo "Downloading forecast..."
-        motuclient --config-file forecast.ini
+        motuclient --config-file forecast.ini 
+        echo 'Changing FillValue to -9999 and compressing with nco'
+        ncatted -a _FillValue,,m,f,-9999 ${idate}.nc
+        ncpdq -L 5 -4 ${idate}.nc tmp.nc
+        rm ${idate}.nc
+        mv tmp.nc ${idate}.nc
     fi
     if [ -f "HINDCAST/${ydate}.nc" ]; then
 	    echo "Hindcast data for $(( $i+1 )) days ago already exists!"
@@ -80,6 +106,11 @@ for i in {1..10}; do
 	    echo "Hindcast data for $(( $i+1 )) days ago doesnt exists"
 	    echo "Downloading hindcast..."
 	    motuclient --config-file hindcast.ini
+        echo 'Changing FillValue to -9999 and compressing with nco'
+        ncatted -a _FillValue,,m,f,-9999 HINDCAST/${ydate}.nc
+        ncpdq -L 5 -4 HINDCAST/${ydate}.nc HINDCAST/tmp.nc
+        rm HINDCAST/${ydate}.nc
+        mv HINDCAST/tmp.nc HINDCAST/${ydate}.nc
     fi
     rm forecast.ini
     rm hindcast.ini
