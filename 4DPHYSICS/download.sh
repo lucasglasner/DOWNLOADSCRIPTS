@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#Script for downloading wave operational forecast
+#Script for downloading 4D mercator operational forecast
 echo "---------------------------------------------------------------------------------------------"
 printf '\nSTARTING DOWNLOAD OF MERCATOR FORECAST\n'
 echo "---------------------------------------------------------------------------------------------"
@@ -22,12 +22,12 @@ if [ -f "${idate}.nc" ]; then
         echo 'All good'
     else
         echo 'Forecast file isnt complete, downloading again...'
-        # motuclient --config-file forecast.ini
+        motuclient --config-file forecast.ini
     fi
 else
     echo "Forecast data for today doesnt exists"
     echo "Downloading forecast..."
-    # motuclient --config-file forecast.ini
+    motuclient --config-file forecast.ini
 fi
 printf '\n'
 if [ -f "HINDCAST/${ydate}.nc" ]; then
@@ -43,8 +43,8 @@ rm forecast.ini
 printf "Done\n"
 printf "\n\n"
 echo "---------------------------------------------------------------------------------------------"
-echo "Checking data for the last 10 days..."
-for i in {1..840}; do
+echo "Checking data for the last 3 days..."
+for i in {1..3}; do
     printf '\n'
     echo "---------------------------------------------------------------------------------------------"
     printf "\nChecking forecast for $i days ago...\n"
@@ -67,12 +67,12 @@ for i in {1..840}; do
             echo 'All good'
         else
             echo 'Forecast file isnt complete, downloading again...'
-            # motuclient --config-file forecast.ini
+            motuclient --config-file forecast.ini
         fi
     else
         echo "Forecast data for $i days ago doesnt exists"
         echo "Downloading forecast..."
-        # motuclient --config-file forecast.ini
+        motuclient --config-file forecast.ini
     fi
     if [ -f "HINDCAST/${ydate}.nc" ]; then
 	    echo "Hindcast data for $(( $i+1 )) days ago already exists!"
