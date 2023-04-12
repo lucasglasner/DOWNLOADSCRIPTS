@@ -11,8 +11,8 @@ pwd=kpt6yrnsRvVm
 motu=https://nrt.cmems-du.eu/motu-web/Motu  
 service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
 product_id=global-analysis-forecast-phy-001-024
-date_min=2023-01-23
-date_max=2023-02-02
+date_min=2023-04-12
+date_max=2023-04-22
 latitude_min=-40  
 latitude_max=-15  
 longitude_min=-80  
@@ -21,7 +21,7 @@ depth_min=0.49402499198913574
 depth_max=5727.9169921875
 variable=thetao,uo,vo,zos,so
 out_dir=. 
-out_name=2023-01-23.nc   
+out_name=2023-04-12.nc   
 log_level=20 
 
 
@@ -35,3 +35,103 @@ Done
 
 
 ---------------------------------------------------------------------------------------------
+Checking data for the last 3 days...
+
+---------------------------------------------------------------------------------------------
+
+Checking forecast for 1 days ago...
+Creating config file for 1 days ago...
+Configs:{ 
+
+[Main]  
+user=lglasner
+pwd=kpt6yrnsRvVm
+motu=https://nrt.cmems-du.eu/motu-web/Motu  
+service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
+product_id=global-analysis-forecast-phy-001-024
+date_min=2023-04-11
+date_max=2023-04-20
+latitude_min=-40  
+latitude_max=-15  
+longitude_min=-80  
+longitude_max=-70    
+depth_min=0.49402499198913574
+depth_max=5727.9169921875
+variable=thetao,uo,vo,zos,so
+out_dir=. 
+out_name=2023-04-11.nc   
+log_level=20 
+
+
+}
+Forecast data for 1 days ago already exists!
+Checking file integrity...
+All good
+Hindcast data for 2 days ago already exists!
+Done
+
+---------------------------------------------------------------------------------------------
+
+Checking forecast for 2 days ago...
+Creating config file for 2 days ago...
+Configs:{ 
+
+[Main]  
+user=lglasner
+pwd=kpt6yrnsRvVm
+motu=https://nrt.cmems-du.eu/motu-web/Motu  
+service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
+product_id=global-analysis-forecast-phy-001-024
+date_min=2023-04-10
+date_max=2023-04-19
+latitude_min=-40  
+latitude_max=-15  
+longitude_min=-80  
+longitude_max=-70    
+depth_min=0.49402499198913574
+depth_max=5727.9169921875
+variable=thetao,uo,vo,zos,so
+out_dir=. 
+out_name=2023-04-10.nc   
+log_level=20 
+
+
+}
+Forecast data for 2 days ago already exists!
+Checking file integrity...
+All good
+Hindcast data for 3 days ago already exists!
+Done
+
+---------------------------------------------------------------------------------------------
+
+Checking forecast for 3 days ago...
+Creating config file for 3 days ago...
+Configs:{ 
+
+[Main]  
+user=lglasner
+pwd=kpt6yrnsRvVm
+motu=https://nrt.cmems-du.eu/motu-web/Motu  
+service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
+product_id=global-analysis-forecast-phy-001-024
+date_min=2023-04-09
+date_max=2023-04-18
+latitude_min=-40  
+latitude_max=-15  
+longitude_min=-80  
+longitude_max=-70    
+depth_min=0.49402499198913574
+depth_max=5727.9169921875
+variable=thetao,uo,vo,zos,so
+out_dir=. 
+out_name=2023-04-09.nc   
+log_level=20 
+
+
+}
+Forecast data for 3 days ago already exists!
+Checking file integrity...
+All good
+Hindcast data for 4 days ago already exists!
+Done

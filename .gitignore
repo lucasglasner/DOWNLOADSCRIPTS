@@ -3,4 +3,4 @@
 *.nc
 PHYSICS/download_cron.log
 WAVES/download_cron.log
-FULLPHYSICS/download_cron.log
+4DPHYSICS/download_cron.log
