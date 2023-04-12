@@ -5,6 +5,6 @@ The architecture is the following:
 
 BIO:          Files related to the biogeochemical forecast/hindcast \
 PHYSICS:      Files related to the hourly mercator forecast/hindcast (only contains surface temperature, ssh and surface currents fields) \
-FULLPHYSICS:  Files related to the daily mercator forecast/hindcast (contains full 4D fields of temperature, currents, salinity and sea level anomalies) \
+4DPHYSICS:    Files related to the daily mercator forecast/hindcast (contains full 4D fields of temperature, currents, salinity and sea level anomalies) \
 WAVES:        Files related to the wave forecast/hindcast (significant wave height, spectral peak period and mean wave direction) \
 
