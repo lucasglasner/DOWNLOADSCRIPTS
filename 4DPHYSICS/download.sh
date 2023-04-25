@@ -43,8 +43,8 @@ rm forecast.ini
 printf "Done\n"
 printf "\n\n"
 echo "---------------------------------------------------------------------------------------------"
-echo "Checking data for the last 3 days..."
-for i in {1..3}; do
+echo "Checking data for the last 15 days..."
+for i in {1..15}; do
     printf '\n'
     echo "---------------------------------------------------------------------------------------------"
     printf "\nChecking forecast for $i days ago...\n"
