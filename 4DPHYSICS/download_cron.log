@@ -11,8 +11,8 @@ pwd=kpt6yrnsRvVm
 motu=https://nrt.cmems-du.eu/motu-web/Motu  
 service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
 product_id=global-analysis-forecast-phy-001-024
-date_min=2023-04-25
-date_max=2023-05-05
+date_min=2023-04-26
+date_max=2023-05-06
 latitude_min=-40  
 latitude_max=-15  
 longitude_min=-80  
@@ -21,7 +21,7 @@ depth_min=0.49402499198913574
 depth_max=5727.9169921875
 variable=thetao,uo,vo,zos,so
 out_dir=. 
-out_name=2023-04-25.nc   
+out_name=2023-04-26.nc   
 log_level=20 
 
 
@@ -49,6 +49,39 @@ pwd=kpt6yrnsRvVm
 motu=https://nrt.cmems-du.eu/motu-web/Motu  
 service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
 product_id=global-analysis-forecast-phy-001-024
+date_min=2023-04-25
+date_max=2023-05-04
+latitude_min=-40  
+latitude_max=-15  
+longitude_min=-80  
+longitude_max=-70    
+depth_min=0.49402499198913574
+depth_max=5727.9169921875
+variable=thetao,uo,vo,zos,so
+out_dir=. 
+out_name=2023-04-25.nc   
+log_level=20 
+
+
+}
+Forecast data for 1 days ago already exists!
+Checking file integrity...
+All good
+Hindcast data for 2 days ago already exists!
+Done
+
+---------------------------------------------------------------------------------------------
+
+Checking forecast for 2 days ago...
+Creating config file for 2 days ago...
+Configs:{ 
+
+[Main]  
+user=lglasner
+pwd=kpt6yrnsRvVm
+motu=https://nrt.cmems-du.eu/motu-web/Motu  
+service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
+product_id=global-analysis-forecast-phy-001-024
 date_min=2023-04-24
 date_max=2023-05-03
 latitude_min=-40  
@@ -64,16 +97,16 @@ log_level=20
 
 
 }
-Forecast data for 1 days ago already exists!
+Forecast data for 2 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 2 days ago already exists!
+Hindcast data for 3 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 2 days ago...
-Creating config file for 2 days ago...
+Checking forecast for 3 days ago...
+Creating config file for 3 days ago...
 Configs:{ 
 
 [Main]  
@@ -97,16 +130,16 @@ log_level=20
 
 
 }
-Forecast data for 2 days ago already exists!
+Forecast data for 3 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 3 days ago already exists!
+Hindcast data for 4 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 3 days ago...
-Creating config file for 3 days ago...
+Checking forecast for 4 days ago...
+Creating config file for 4 days ago...
 Configs:{ 
 
 [Main]  
@@ -130,16 +163,16 @@ log_level=20
 
 
 }
-Forecast data for 3 days ago already exists!
+Forecast data for 4 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 4 days ago already exists!
+Hindcast data for 5 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 4 days ago...
-Creating config file for 4 days ago...
+Checking forecast for 5 days ago...
+Creating config file for 5 days ago...
 Configs:{ 
 
 [Main]  
@@ -163,16 +196,16 @@ log_level=20
 
 
 }
-Forecast data for 4 days ago already exists!
+Forecast data for 5 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 5 days ago already exists!
+Hindcast data for 6 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 5 days ago...
-Creating config file for 5 days ago...
+Checking forecast for 6 days ago...
+Creating config file for 6 days ago...
 Configs:{ 
 
 [Main]  
@@ -196,16 +229,16 @@ log_level=20
 
 
 }
-Forecast data for 5 days ago already exists!
+Forecast data for 6 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 6 days ago already exists!
+Hindcast data for 7 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 6 days ago...
-Creating config file for 6 days ago...
+Checking forecast for 7 days ago...
+Creating config file for 7 days ago...
 Configs:{ 
 
 [Main]  
@@ -229,16 +262,16 @@ log_level=20
 
 
 }
-Forecast data for 6 days ago already exists!
+Forecast data for 7 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 7 days ago already exists!
+Hindcast data for 8 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 7 days ago...
-Creating config file for 7 days ago...
+Checking forecast for 8 days ago...
+Creating config file for 8 days ago...
 Configs:{ 
 
 [Main]  
@@ -262,16 +295,16 @@ log_level=20
 
 
 }
-Forecast data for 7 days ago already exists!
+Forecast data for 8 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 8 days ago already exists!
+Hindcast data for 9 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 8 days ago...
-Creating config file for 8 days ago...
+Checking forecast for 9 days ago...
+Creating config file for 9 days ago...
 Configs:{ 
 
 [Main]  
@@ -295,16 +328,16 @@ log_level=20
 
 
 }
-Forecast data for 8 days ago already exists!
+Forecast data for 9 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 9 days ago already exists!
+Hindcast data for 10 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 9 days ago...
-Creating config file for 9 days ago...
+Checking forecast for 10 days ago...
+Creating config file for 10 days ago...
 Configs:{ 
 
 [Main]  
@@ -328,16 +361,16 @@ log_level=20
 
 
 }
-Forecast data for 9 days ago already exists!
+Forecast data for 10 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 10 days ago already exists!
+Hindcast data for 11 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 10 days ago...
-Creating config file for 10 days ago...
+Checking forecast for 11 days ago...
+Creating config file for 11 days ago...
 Configs:{ 
 
 [Main]  
@@ -361,16 +394,16 @@ log_level=20
 
 
 }
-Forecast data for 10 days ago already exists!
+Forecast data for 11 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 11 days ago already exists!
+Hindcast data for 12 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 11 days ago...
-Creating config file for 11 days ago...
+Checking forecast for 12 days ago...
+Creating config file for 12 days ago...
 Configs:{ 
 
 [Main]  
@@ -394,16 +427,16 @@ log_level=20
 
 
 }
-Forecast data for 11 days ago already exists!
+Forecast data for 12 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 12 days ago already exists!
+Hindcast data for 13 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 12 days ago...
-Creating config file for 12 days ago...
+Checking forecast for 13 days ago...
+Creating config file for 13 days ago...
 Configs:{ 
 
 [Main]  
@@ -427,16 +460,16 @@ log_level=20
 
 
 }
-Forecast data for 12 days ago already exists!
+Forecast data for 13 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 13 days ago already exists!
+Hindcast data for 14 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 13 days ago...
-Creating config file for 13 days ago...
+Checking forecast for 14 days ago...
+Creating config file for 14 days ago...
 Configs:{ 
 
 [Main]  
@@ -460,16 +493,16 @@ log_level=20
 
 
 }
-Forecast data for 13 days ago already exists!
+Forecast data for 14 days ago already exists!
 Checking file integrity...
 All good
-Hindcast data for 14 days ago already exists!
+Hindcast data for 15 days ago already exists!
 Done
 
 ---------------------------------------------------------------------------------------------
 
-Checking forecast for 14 days ago...
-Creating config file for 14 days ago...
+Checking forecast for 15 days ago...
+Creating config file for 15 days ago...
 Configs:{ 
 
 [Main]  
@@ -489,39 +522,6 @@ depth_max=5727.9169921875
 variable=thetao,uo,vo,zos,so
 out_dir=. 
 out_name=2023-04-11.nc   
-log_level=20 
-
-
-}
-Forecast data for 14 days ago already exists!
-Checking file integrity...
-All good
-Hindcast data for 15 days ago already exists!
-Done
-
----------------------------------------------------------------------------------------------
-
-Checking forecast for 15 days ago...
-Creating config file for 15 days ago...
-Configs:{ 
-
-[Main]  
-user=lglasner
-pwd=kpt6yrnsRvVm
-motu=https://nrt.cmems-du.eu/motu-web/Motu  
-service_id=GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
-product_id=global-analysis-forecast-phy-001-024
-date_min=2023-04-10
-date_max=2023-04-19
-latitude_min=-40  
-latitude_max=-15  
-longitude_min=-80  
-longitude_max=-70    
-depth_min=0.49402499198913574
-depth_max=5727.9169921875
-variable=thetao,uo,vo,zos,so
-out_dir=. 
-out_name=2023-04-10.nc   
 log_level=20 
 
 
