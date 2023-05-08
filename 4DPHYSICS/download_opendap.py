@@ -37,34 +37,33 @@ encoding_opts = {'vo': {"zlib":True,"complevel":4,
                         'original_shape': (4, 50, 301, 121),
                         'dtype': float,
                         '_FillValue': -32767,
-                        'scale_factor': 0.0006103701889514923,
+                        'scale_factor': 1.0,
                         'add_offset': 0.0},
                 'thetao': {"zlib":True,"complevel":4,
                         'original_shape': (4, 50, 301, 121),
                         'dtype': float,
                         '_FillValue': -32767,
-                        'scale_factor': 0.0007324442267417908,
-                        'add_offset': 21.0},
+                        'scale_factor': 1.0,
+                        'add_offset': 0.0},
                 'uo': {"zlib":True,"complevel":4,
                         'original_shape': (4, 50, 301, 121),
                         'dtype': float,
                         '_FillValue': -32767,
-                        'scale_factor': 0.0006103701889514923,
+                        'scale_factor': 1.0,
                         'add_offset': 0.0},
                 'so': {"zlib":True,"complevel":4,
                         'original_shape': (4, 50, 301, 121),
                         'dtype': float,
                         '_FillValue': -32767,
-                        'scale_factor': 0.0015259254723787308,
-                        'add_offset': -0.0015259254723787308},
+                        'scale_factor': 1.0,
+                        'add_offset': 0.0},
                 'zos': {"zlib":True,"complevel":4,
                         'original_shape': (4, 301, 121),
                         'dtype': float,
                         '_FillValue': -32767,
-                        'scale_factor': 0.00030518509447574615,
+                        'scale_factor': 1.0,
                         'add_offset': 0.0}
                 }
-
 # ---------------------------------------------------------------------------- #
 def download_hindcast():
     print('%'*100)
@@ -83,11 +82,14 @@ def download_hindcast():
     for day in pd.date_range(date_min,utcnow, freq='d')[:-1]:
         fname = rundir+'/HINDCAST/'+day.strftime('%F')+'.nc'
         if os.path.isfile(fname):
-            data = xr.open_dataset(fname)
-            if len(data.time)!=4:
+            try:
+                data = xr.open_dataset(fname)
+                if len(data.time)!=4:
+                    exists.append(False)
+                else:
+                    exists.append(True)
+            except:
                 exists.append(False)
-            else:
-                exists.append(True)
         else:
             exists.append(False)
     if sum(exists)!=len(pd.date_range(date_min,utcnow, freq='d')[:-1]):
@@ -108,7 +110,7 @@ def download_hindcast():
             DATA.append(data.squeeze())
             del data
         print('Joining datasets...')
-        DATA = xr.merge(DATA)
+        DATA = xr.merge(DATA).drop_duplicates('time')
     except Exception as e:
         print('Something failed:',e)
     print('Saving to disk:')
@@ -116,20 +118,30 @@ def download_hindcast():
         fname = rundir+'/HINDCAST/'+day.strftime('%F')+'.nc'
         if os.path.isfile(fname):
             print('\tFile:',day.strftime('%F')+'.nc already exists!!!','\n\tChecking consistency...')
-            data = xr.open_dataset(fname)
-            if len(data.time)!=4:
-                print('\tData is incomplete downloading again...')
-                try:
+            try:
+                data = xr.open_dataset(fname)
+                if len(data.time)!=4:
+                    print('\tData is incomplete downloading again...')
+                    try:
                         os.remove(fname)
                         print('\tFile:',day.strftime('%F')+'.nc')
                         DATA.sel(time=day.strftime('%F')).to_netcdf(fname, format='NETCDF4',
                                                                 engine='netcdf4',
                                                                 encoding=encoding_opts)
-                except Exception as e:
+                    except Exception as e:
                         print('\tDownload failed: ',e)
-            else:
-                print('\tAll good')
-            
+                else:
+                        print('\tAll good')
+            except:
+                print('\tData is corrupt downloading again...')
+                try:
+                    os.remove(fname)
+                    print('\tFile:',day.strftime('%F')+'.nc')
+                    DATA.sel(time=day.strftime('%F')).to_netcdf(fname, format='NETCDF4',
+                                                            engine='netcdf4',
+                                                            encoding=encoding_opts)
+                except Exception as e:
+                    print('\tDownload failed: ',e)
         else:   
             try:
                 print('\tFile:',day.strftime('%F')+'.nc')
@@ -157,50 +169,68 @@ def download_forecast():
             'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy_anfc_0.083deg_P1D-m':['zos']}
 
     for i in range((utcnow-date_min).days):
-            fname = rundir+(utcnow-datetime.timedelta(days=i)).strftime('%F')+'.nc'
-            print('Downloading: ',fname)
-            if os.path.isfile(fname):
-                    print('\tFile:',fname,'already exists!!!','\n\tChecking consistency...')
-                    data = xr.open_dataset(fname)
-                    if len(data.time)!=10:
-                            print('\tData is incomplete downloading again...')
-                            try:
-                                    DATA = []
-                                    for url,variables in zip(urls.keys(),urls.values()):
-                                            print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
-                                            data = xr.open_dataset(url)[variables]
-                                            data = data.sel(time=slice(utcnow-datetime.timedelta(days=i),date_max-datetime.timedelta(days=i)))
-                                            data = data.sel(longitude=slice(longitude_min,longitude_max),latitude=slice(latitude_min,latitude_max))
-                                            DATA.append(data.squeeze())
-                                            del data
-                                    print('\tJoining datasets...')
-                                    DATA = xr.merge(DATA)
-                                    print('\tSaving to disk...')
-                                    DATA.to_netcdf(fname, format='NETCDF4',engine='netcdf4',encoding=encoding_opts)
-                            except Exception as e:
-                                    print('\tSomething failed:',e)
-                            print('\tDone')
-                    else:
-                            print('\tAll good')
-                            
-            else:      
+        fname = rundir+(utcnow-datetime.timedelta(days=i)).strftime('%F')+'.nc'
+        print('Downloading: ',fname)
+        if os.path.isfile(fname):
+            print('\tFile:',fname,'already exists!!!','\n\tChecking consistency...')
+            try:
+                data = xr.open_dataset(fname)
+                if len(data.time)!=10:
+                    print('\tData is incomplete downloading again...')
                     try:
-                            DATA = []
-                            for url,variables in zip(urls.keys(),urls.values()):
-                                    print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
-                                    data = xr.open_dataset(url)[variables]
-                                    data = data.sel(time=slice(utcnow-datetime.timedelta(days=i),date_max-datetime.timedelta(days=i)))
-                                    data = data.sel(longitude=slice(longitude_min,longitude_max),latitude=slice(latitude_min,latitude_max))
-                                    DATA.append(data.squeeze())
-                                    del data
-                            print('\tJoining datasets...')
-                            DATA = xr.merge(DATA)
-                            print('\tSaving to disk...')
-                            DATA.to_netcdf(fname, format='NETCDF4',engine='netcdf4',encoding=encoding_opts)
+                        DATA = []
+                        for url,variables in zip(urls.keys(),urls.values()):
+                            print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
+                            data = xr.open_dataset(url)[variables]
+                            data = data.sel(time=slice(utcnow-datetime.timedelta(days=i),date_max-datetime.timedelta(days=i)))
+                            data = data.sel(longitude=slice(longitude_min,longitude_max),latitude=slice(latitude_min,latitude_max))
+                            DATA.append(data.squeeze())
+                            del data
+                        print('\tJoining datasets...')
+                        DATA = xr.merge(DATA).drop_duplicates('time')
+                        print('\tSaving to disk...')
+                        DATA.to_netcdf(fname, format='NETCDF4',engine='netcdf4',encoding=encoding_opts)
                     except Exception as e:
-                            print('\tSomething failed:',e)
+                        print('\tSomething failed:',e)
                     print('\tDone')
-            print('\n')
+                else:
+                    print('\tAll good')   
+            except:
+                print('\tData is corrupt downloading again...')
+                try:
+                    DATA = []
+                    for url,variables in zip(urls.keys(),urls.values()):
+                        print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
+                        data = xr.open_dataset(url)[variables]
+                        data = data.sel(time=slice(utcnow-datetime.timedelta(days=i),date_max-datetime.timedelta(days=i)))
+                        data = data.sel(longitude=slice(longitude_min,longitude_max),latitude=slice(latitude_min,latitude_max))
+                        DATA.append(data.squeeze())
+                        del data
+                    print('\tJoining datasets...')
+                    DATA = xr.merge(DATA)
+                    print('\tSaving to disk...')
+                    DATA.to_netcdf(fname, format='NETCDF4',engine='netcdf4',encoding=encoding_opts)
+                except Exception as e:
+                    print('\tSomething failed:',e)
+                print('\tDone') 
+        else:     
+            try:
+                DATA = []
+                for url,variables in zip(urls.keys(),urls.values()):
+                    print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
+                    data = xr.open_dataset(url)[variables]
+                    data = data.sel(time=slice(utcnow-datetime.timedelta(days=i),date_max-datetime.timedelta(days=i)))
+                    data = data.sel(longitude=slice(longitude_min,longitude_max),latitude=slice(latitude_min,latitude_max))
+                    DATA.append(data.squeeze())
+                    del data
+                print('\tJoining datasets...')
+                DATA = xr.merge(DATA)
+                print('\tSaving to disk...')
+                DATA.to_netcdf(fname, format='NETCDF4',engine='netcdf4',encoding=encoding_opts)
+            except Exception as e:
+                print('\tSomething failed:',e)
+            print('\tDone')
+        print('\n')
     print('Elapsed time: ',datetime.datetime.utcnow()-start)
     print('All good')
     return

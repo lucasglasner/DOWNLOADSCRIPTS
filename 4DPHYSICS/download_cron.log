@@ -1,1 +1,60 @@
-bash: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/download.sh: No existe el archivo o el directorio
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2023-05-08 22:00:02.722984
+DOWNLOADING MERCATOR 6H INSTANTANEOUS HINDCAST: Global Ocean Physics Analysis and Forecast
+Service id: GLOBAL_ANALYSISFORECAST_PHY_001_024-TDS
+Time range: 2023-05-05  -  2023-05-07
+Spatial extent:  80°W-70°W ; 40°S-15°S
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Loading uo-vo from opendap service: nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i
+Loading so from opendap service: nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i
+Loading thetao from opendap service: nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i
+Loading zos from opendap service: nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy_anfc_0.083deg_PT1H-m
+Joining datasets...
+Saving to disk:
+	File: 2023-05-05.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+	File: 2023-05-06.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+	File: 2023-05-07.nc already exists!!! 
+	Checking consistency...
+	Data is incomplete downloading again...
+	File: 2023-05-07.nc
+
+
+Elapsed time:  0:00:55.351344
+All good
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2023-05-08 22:00:58.095649
+DOWNLOADING MERCATOR DAILY FORECAST: Global Ocean Physics Analysis and Forecast
+Service id: GLOBAL_ANALYSISFORECAST_PHY_001_024-TDS
+Spatial extent:  80°W-70°W ; 40°S-15°S
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Downloading:  /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/2023-05-08.nc
+	File: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/2023-05-08.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+Downloading:  /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/2023-05-07.nc
+	File: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/2023-05-07.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+Downloading:  /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/2023-05-06.nc
+	File: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/2023-05-06.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+Elapsed time:  0:00:55.396388
+All good
