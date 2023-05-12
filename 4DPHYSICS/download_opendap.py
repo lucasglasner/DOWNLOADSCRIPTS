@@ -113,6 +113,7 @@ def download_hindcast():
         DATA = xr.merge(DATA).drop_duplicates('time')
     except Exception as e:
         print('Something failed:',e)
+        return
     print('Saving to disk:')
     for day in pd.date_range(date_min,utcnow, freq='d')[:-1]:
         fname = rundir+'/HINDCAST/'+day.strftime('%F')+'.nc'
@@ -178,6 +179,7 @@ def download_forecast():
                 if len(data.time)!=10:
                     print('\tData is incomplete downloading again...')
                     try:
+                        os.remove(fname)
                         DATA = []
                         for url,variables in zip(urls.keys(),urls.values()):
                             print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
@@ -198,6 +200,7 @@ def download_forecast():
             except:
                 print('\tData is corrupt downloading again...')
                 try:
+                    os.remove(fname)
                     DATA = []
                     for url,variables in zip(urls.keys(),urls.values()):
                         print('\tLoading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
