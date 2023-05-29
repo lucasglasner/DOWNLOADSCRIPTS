@@ -20,7 +20,7 @@ import sys
 
 
 # ---------------------------------------------------------------------------- #
-rundir        = '/home/lucas/storage/FORECAST/MERCATOR/4DPHYSICS/'
+rundir        = '/home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/'
 start         = datetime.datetime.utcnow()
 utcnow        = start.date()
 date_min      = utcnow-datetime.timedelta(days=3)
@@ -68,15 +68,15 @@ encoding_opts = {'vo': {"zlib":True,"complevel":4,
 def download_hindcast():
     print('%'*100)
     print(datetime.datetime.utcnow())
-    print('DOWNLOADING MERCATOR 6H INSTANTANEOUS HINDCAST: Global Ocean Physics Analysis and Forecast')
+    print('DOWNLOADING MERCATOR DAILY HINDCAST: Global Ocean Physics Analysis and Forecast')
     print('Service id: GLOBAL_ANALYSISFORECAST_PHY_001_024-TDS')
     print('Time range: {}  -  {}'.format(date_min,utcnow-datetime.timedelta(days=1)))
     print('Spatial extent: ','{}°W-{}°W ; {}°S-{}°S'.format(abs(longitude_min),abs(longitude_max),abs(latitude_min),abs(latitude_max)))
     print('%'*100)
-    urls = {'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i':['uo','vo'],
-            'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-so_anfc_0.083deg_PT6H-i':['so'],
-            'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-thetao_anfc_0.083deg_PT6H-i':['thetao'],
-            'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy_anfc_0.083deg_PT1H-m':['zos']}
+    urls = {'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m':['uo','vo'],
+            'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m':['so'],
+            'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m':['thetao'],
+            'https://lglasner:kpt6yrnsRvVm@nrt.cmems-du.eu/thredds/dodsC/cmems_mod_glo_phy_anfc_0.083deg_P1D-m':['zos']}
     
     exists = []
     for day in pd.date_range(date_min,utcnow, freq='d')[:-1]:
@@ -84,7 +84,7 @@ def download_hindcast():
         if os.path.isfile(fname):
             try:
                 data = xr.open_dataset(fname)
-                if len(data.time)!=4:
+                if len(data.time)!=1:
                     exists.append(False)
                 else:
                     exists.append(True)
@@ -103,7 +103,7 @@ def download_hindcast():
         for url,variables in zip(urls.keys(),urls.values()):
             print('Loading '+'-'.join(variables)+' from opendap service:',url.split("@")[-1])
             data = xr.open_dataset(url)[variables]
-            data = data.sel(time=slice(date_min,utcnow)).isel(time=slice(0,-1))
+            data = data.sel(time=slice(date_min,utcnow+datetime.timedelta(days=1))).isel(time=slice(0,-1))
             data = data.sel(longitude=slice(longitude_min,longitude_max),latitude=slice(latitude_min,latitude_max))
             if variables==['zos']:
                 data=data.reindex({'time':DATA[0].time}, method='nearest')
@@ -121,7 +121,7 @@ def download_hindcast():
             print('\tFile:',day.strftime('%F')+'.nc already exists!!!','\n\tChecking consistency...')
             try:
                 data = xr.open_dataset(fname)
-                if len(data.time)!=4:
+                if len(data.time)!=1:
                     print('\tData is incomplete downloading again...')
                     try:
                         os.remove(fname)

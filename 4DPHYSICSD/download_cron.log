@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2023-05-29 18:30:02.154027
+DOWNLOADING MERCATOR DAILY HINDCAST: Global Ocean Physics Analysis and Forecast
+Service id: GLOBAL_ANALYSISFORECAST_PHY_001_024-TDS
+Time range: 2023-05-26  -  2023-05-28
+Spatial extent:  80°W-70°W ; 40°S-15°S
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Files for requested dates are already on disk !!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+2023-05-29 18:30:02.251548
+DOWNLOADING MERCATOR DAILY FORECAST: Global Ocean Physics Analysis and Forecast
+Service id: GLOBAL_ANALYSISFORECAST_PHY_001_024-TDS
+Spatial extent:  80°W-70°W ; 40°S-15°S
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Downloading:  /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/2023-05-29.nc
+	File: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/2023-05-29.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+Downloading:  /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/2023-05-28.nc
+	File: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/2023-05-28.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+Downloading:  /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/2023-05-27.nc
+	File: /home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/2023-05-27.nc already exists!!! 
+	Checking consistency...
+	All good
+
+
+Elapsed time:  0:00:00.118225
+All good
