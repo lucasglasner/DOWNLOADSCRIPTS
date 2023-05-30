@@ -23,8 +23,8 @@ import sys
 rundir        = '/home/lucas/storage/FORECAST/MERCATOR/4DPHYSICSD/'
 start         = datetime.datetime.utcnow()
 utcnow        = start.date()
-date_min      = utcnow-datetime.timedelta(days=3)
-date_max      = utcnow+datetime.timedelta(days=10)
+date_min      = utcnow-datetime.timedelta(days=878)
+date_max      = utcnow-datetime.timedelta(days=513)#+datetime.timedelta(days=10)
 latitude_min  = -40  
 latitude_max  = -15  
 longitude_min = -80  
@@ -240,5 +240,5 @@ def download_forecast():
 
 if __name__=='__main__':
     download_hindcast()
-    download_forecast()
+    #download_forecast()
     sys.exit()

@@ -1,6 +1,9 @@
+**/**/**/*.nc
 **/*.nc
 **/**/*.nc
 *.nc
-PHYSICS/download_cron.log
-WAVES/download_cron.log
-4DPHYSICS/download_cron.log
+**/**/**/*.log
+**/*.log
+**/**/*.log
+*.log
+WRF
