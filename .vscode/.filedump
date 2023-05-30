@@ -1,6 +1,6 @@
 
 		begin
-      f = addfile("/home/lucas/storage/FORECAST/HYCOM/HINDCAST/hycom_hindcast_0p08_20210110.nc","r")
+      f = addfile("/home/lucas/storage/FORECAST/MERCATOR/GLORYS12/glorys12v1_reanalysis_0p08_Y1993M01.nc","r")
       print(f)
 		end
     
