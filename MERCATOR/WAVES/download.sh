@@ -59,7 +59,7 @@ printf "Done\n"
 printf "\n\n"
 echo "---------------------------------------------------------------------------------------------"
 echo "Checking data for the last 3 days..."
-for i in {1..900}; do
+for i in {1..3}; do
     printf '\n'
     echo "---------------------------------------------------------------------------------------------"
     printf "\nChecking forecast for $i days ago...\n"
@@ -74,31 +74,31 @@ for i in {1..900}; do
     cat motuconfig.ini | sed "s/%NAME%/HINDCAST\/${ydate}/g" | sed "s/%TIME1%/${ydate}\ 00:00/g" | sed "s/%TIME2%/${ydate}\ 23:59/g" > hindcast.ini
     cat forecast.ini
     printf '\n\n}\n'
-    # if [ -f "${idate}.nc" ]; then
-    #     echo "Forecast data for $i days ago already exists!"
-    #     echo "Checking file integrity..."
-    #     statement=$(ncdump -h ${idate}.nc | head | grep -oP '(?<=time =).*?(?=;)')
-    #     if [ $statement = 80 ]; then
-    #         echo 'All good'
-    #     else
-    #         echo 'Forecast file isnt complete, downloading again...'
-    #         motuclient --config-file forecast.ini
-    #         echo 'Changing FillValue and compressing with nco'
-    #         ncatted -a _FillValue,,m,f,-32767 ${idate}.nc
-    #         ncpdq -L 5 -7 ${idate}.nc tmp.nc
-    #         rm ${idate}.nc
-    #         mv tmp.nc ${idate}.nc
-    #     fi
-    # else
-    #     echo "Forecast data for $i days ago doesnt exists"
-    #     echo "Downloading forecast..."
-    #     motuclient --config-file forecast.ini
-    #     echo 'Changing FillValue and compressing with nco'
-    #     ncatted -a _FillValue,,m,f,-32767 ${idate}.nc
-    #     ncpdq -L 5 -7 ${idate}.nc tmp.nc
-    #     rm ${idate}.nc
-    #     mv tmp.nc ${idate}.nc
-    # fi
+    if [ -f "${idate}.nc" ]; then
+        echo "Forecast data for $i days ago already exists!"
+        echo "Checking file integrity..."
+        statement=$(ncdump -h ${idate}.nc | head | grep -oP '(?<=time =).*?(?=;)')
+        if [ $statement = 80 ]; then
+            echo 'All good'
+        else
+            echo 'Forecast file isnt complete, downloading again...'
+            motuclient --config-file forecast.ini
+            echo 'Changing FillValue and compressing with nco'
+            ncatted -a _FillValue,,m,f,-32767 ${idate}.nc
+            ncpdq -L 5 -7 ${idate}.nc tmp.nc
+            rm ${idate}.nc
+            mv tmp.nc ${idate}.nc
+        fi
+    else
+        echo "Forecast data for $i days ago doesnt exists"
+        echo "Downloading forecast..."
+        motuclient --config-file forecast.ini
+        echo 'Changing FillValue and compressing with nco'
+        ncatted -a _FillValue,,m,f,-32767 ${idate}.nc
+        ncpdq -L 5 -7 ${idate}.nc tmp.nc
+        rm ${idate}.nc
+        mv tmp.nc ${idate}.nc
+    fi
     if [ -f "HINDCAST/${ydate}.nc" ]; then
 	    echo "Hindcast data for $(( $i+1 )) days ago already exists!"
     else
